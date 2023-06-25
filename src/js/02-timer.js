@@ -27,6 +27,8 @@ const hoursElement = document.querySelector('span[data-hours]');
 const minutesElement = document.querySelector('span[data-minutes]');
 const secondsElement = document.querySelector('span[data-seconds]');
 
+startButton.disabled = true;
+
 flatpickr(datePicker, {
   enableTime: true,
   time_24hr: true,
@@ -37,7 +39,7 @@ flatpickr(datePicker, {
     const currentDate = new Date();
 
     if (selectedDate <= currentDate) {
-      Notiflix.Notify.Failure('Please choose a date in the future');
+      Notiflix.Notify.failure('Please choose a date in the future');
       startButton.disabled = true;
     } else {
       startButton.disabled = false;
@@ -51,7 +53,7 @@ startButton.addEventListener('click', () => {
   const timeDifference = selectedDate.getTime() - currentDate.getTime();
 
   if (timeDifference <= 0) {
-    Notiflix.Notify.Failure('Please choose a date in the future');
+    Notiflix.Notify.failure('Please choose a date in the future');
     return;
   }
 
